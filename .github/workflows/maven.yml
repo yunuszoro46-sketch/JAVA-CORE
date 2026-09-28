@@ -11,15 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-    - name: Compile All Java Files
-      run: |
-        find . -name "*.java" > sources.txt
-        javac @sources.txt
+      - name: Compile JavaOOP sources
+        run: |
+          mkdir -p build
+          cd JavaOOP
+          find . -name "*.java" -type f > sources.txt
+          javac -d ../build @sources.txt
